@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harshit - Quantum ML Engineer</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #00f7ff;
+            --secondary-color: #1a1a2e;
+            --accent-color: #7209b7;
+            --text-color: #e9ecef;
+            --card-bg: rgba(26, 26, 46, 0.8);
+            --gradient-1: linear-gradient(135deg, #7209b7, #3a0ca3);
+            --gradient-2: linear-gradient(45deg, #4cc9f0, #4361ee);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: linear-gradient(135deg, #0a192f, #000000);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 2px;
+        }
+
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.5;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 25, 47, 0.95);
+            padding: 1rem;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--primary-color);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::before {
+            width: 100%;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 8rem 0 4rem 0;
+            animation: fadeIn 1s ease-in;
+            background: radial-gradient(circle at center, rgba(114, 9, 183, 0.2) 0%, transparent 70%);
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            border: 3px solid var(--primary-color);
+            object-fit: cover;
+            box-shadow: 0 0 20px var(--primary-color);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(76, 201, 240, 0.3);
+        }
+
+        .section {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(76, 201, 240, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(76, 201, 240, 0.1);
+        }
+
+        .experience-item {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(114, 9, 183, 0.1);
+            border-radius: 15px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .experience-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-category {
+            background: rgba(114, 9, 183, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(76, 201, 240, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: rgba(26, 26, 46, 0.8);
+            padding: 1.5rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(76, 201, 240, 0.2);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 30px rgba(76, 201, 240, 0.1);
+        }
+
+        .project-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(76, 201, 240, 0.1);
+            border: 1px solid rgba(76, 201, 240, 0.2);
+        }
+
+        .social-links a:hover {
+            background: var(--primary-color);
+            color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        .quantum-emoji {
+            font-size: 2rem;
+            margin: 1rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .social-links {
+                gap: 1rem;
+            }
+
+            .social-links a {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                padding: 0.5rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero {
+                padding: 6rem 0 2rem 0;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+        }
+        .nav-toggle {
+            display: none;
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1001;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background-color: var(--primary-color);
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
+
+            nav {
+                transform: translateX(100%);
+                position: fixed;
+                top: 0;
+                right: 0;
+                height: 100%;
+                width: 100%;
+                background: rgba(10, 25, 47, 0.98);
+                padding-top: 4rem;
+                transition: transform 0.3s ease;
+            }
+
+            nav.active {
+                transform: translateX(0);
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 2rem;
+            }
+
+            .nav-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .nav-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .nav-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -7px);
+            }
+
+            /* Prevent body scroll when menu is open */
+            body.menu-open {
+                overflow: hidden;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+     <!-- Add hamburger menu button -->
+    <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- Modified navigation -->
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <section class="hero">
+            <img src="https://media.licdn.com/dms/image/v2/D4D03AQFau6vwY615tg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1720246337926?e=1734566400&v=beta&t=G5PIbVTf4lKD-USz9l95vT2rjV_I0stz2eyHoBoAzdU" alt="Harshit" class="profile-img">
+            <h1>Harshit</h1>
+            <p>Sr. AI / ML Engineer | Quantum Computing Enthusiast</p>
+            <div class="quantum-emoji">
+                🌌 ⚛️ 💻 🔮
+            </div>
+            <!-- <div class="social-links">
+                <a href="https://github.com/HarshitMakwana" target="_blank">🐙 GitHub</a>
+                <a href="https://linkedin.com/in/harshit-ai/" target="_blank">💼 LinkedIn</a>
+                <a href="mailto:harshit.makwana@outlook.com">📧 Email</a>
+            </div> -->
+        </section>
+
+        <section id="experience" class="section">
+            <h2>Professional Experience</h2>
+            <div class="experience-item">
+                <h3>Sr. AI / ML Engineer - NinjaTech Agency</h3>
+                <p>Sep. 2024 - Present | Ahmedabad, Gujarat</p>
+            </div>
+            <div class="experience-item">
+                <h3>Big Data / Machine Learning Engineer - Infosenseglobal Inc</h3>
+                <p>Jan. 2022 - Present | Gandhinagar, Gujarat</p>
+            </div>
+            <div class="experience-item">
+                <h3>AI / Machine Learning Engineer - Freelancing</h3>
+                <p>Dec. 2020 – Dec 2021 | Remote</p>
+            </div>
+            <div class="experience-item">
+                <h3>Robotics Researcher Internship - Zarp Labs</h3>
+                <p>Jun. 2021 – Sep. 2021 | Varanasi, UP</p>
+            </div>
+        </section>
+
+        <section id="projects" class="section">
+            <h2>Featured Projects</h2>
+            <div class="projects-grid">
+                <!-- <div class="project-card">
+                    <h3>🤖 VehiSense Pro</h3>
+                    <p>Comprehensive vehicle monitoring system using YOLOv8 and computer vision</p>
+                </div>
+                <div class="project-card">
+                    <h3>🎨 Image Inpainting Using GANs</h3>
+                    <p>Advanced image reconstruction using generative adversarial networks</p>
+                </div>
+                <div class="project-card">
+                    <h3>🗺️ GIS Conflict Detection</h3>
+                    <p>ML-powered spatial analysis with 98% accuracy</p>
+                </div>
+                <div class="project-card">
+                    <h3>🤖 AI-Powered Interview Bot</h3>
+                    <p>Automated assessment system using LSTM and TensorFlow</p>
+                </div> -->
+
+                <div class="project-card">
+                    <h3>📊 Scalable Data Fusion Engine</h3>
+                    <p>Backend development of a scalable engine to fuse, process, and provide real-time data insights using FastAPI.</p>
+                </div>
+                
+                <div class="project-card">
+                    <h3>🚙 VehiSense Pro</h3>
+                    <p>Real-time vehicle monitoring and analysis with accident detection and parking analysis using computer vision.</p>
+                </div>
+                
+                <div class="project-card">
+                    <h3>🚧 Roadway Solutions</h3>
+                    <p>Real-time object detection, depth estimation for potholes, and road segmentation using advanced computer vision models.</p>
+                </div>
+                
+                <div class="project-card">
+                    <h3>📝 Automated Resume Insights</h3>
+                    <p>Django-based NLP system automating resume parsing and candidate evaluation with high accuracy.</p>
+                </div>
+                
+                <div class="project-card">
+                    <h3>🎨 Image Inpainting Using GANs</h3>
+                    <p>Advanced image reconstruction using generative adversarial networks.</p>
+                </div>
+                
+                <div class="project-card">
+                    <h3>🌍 GIS Conflict Detection and Prediction</h3>
+                    <p>Detecting and predicting conflicts in roadway and trip location coordinates using GIS and machine learning techniques.</p>
+                </div>
+                
+                <div class="project-card">
+                    <h3>🚗 Turning Movement Count Estimation</h3>
+                    <p>Estimating vehicle turning movements and analyzing seasonality patterns using machine learning models.</p>
+                </div>
+                
+                <div class="project-card">
+                    <h3>💼 AI-Powered Interview Bot</h3>
+                    <p>Deep learning chatbot for automating interviews with aptitude and job-specific evaluations.</p>
+                </div>
+                
+                <div class="project-card">
+                    <h3>🤖 Voice-Assisted Chatbot Integration</h3>
+                    <p>Integrating Siri and Google Assistant chatbots with APIs for travel and incident data using Swift and Flutter Dart.</p>
+                </div>
+                
+                <div class="project-card">
+                    <h3>🚁 ESP32-based Drone Project</h3>
+                    <p>Integrated flight control and sensor management for drones using ESP32, LoRa, and MicroPython.</p>
+                </div>
+                
+                <div class="project-card">
+                    <h3>🏠 Smart Home Automation System</h3>
+                    <p>Voice-controlled and motion-detecting home automation system using Arduino and Kotlin-based smartphone app.</p>
+                </div>
+                
+                <div class="project-card">
+                    <h3>🌡️ Zabbix-Integrated Server Room Monitoring</h3>
+                    <p>Temperature monitoring and anomaly detection for server rooms using Zabbix and temperature sensors.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="section">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <!-- <div class="skill-category">
+                    <h3>🧠 Machine Learning</h3>
+                    <p>CNN, RNN, DNN, BNN, LSTM, SSD, GAN, DRL, Transformer</p>
+                </div>
+                <div class="skill-category">
+                    <h3>💻 Programming</h3>
+                    <p>Python, Rust, C/C++, Java</p>
+                </div>
+                <div class="skill-category">
+                    <h3>🗣️ NLP</h3>
+                    <p>Spacy, NLTK, Transformers, Llama3.1, Groq, RLHF</p>
+                </div>
+                <div class="skill-category">
+                    <h3>👁️ Computer Vision</h3>
+                    <p>OpenCV, YOLO, Midas, Pillow</p>
+                </div> -->
+
+                <div class="skill-category">
+                    <h3>🧠 Machine Learning and Deep Learning</h3>
+                    <p>CNN, RNN, DNN, BNN, LSTM, SSD, GAN, DRL, Transformer</p>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>🗣️ NLP and Large Language Models</h3>
+                    <p>Spacy, NLTK, Transformers, Llama3.1, Groq, RLHF, Hugging Face</p>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>👁️ Computer Vision and Image Preprocessing</h3>
+                    <p>OpenCV, Yolo, Midas, Pillow</p>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>💻 Programming</h3>
+                    <p>Python, Rust, C/C++, Java (For Performance)</p>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>📊 Big Data and Data Engineering</h3>
+                    <p>SQL, NoSQL Databases</p>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>📡 IoT and Microcontrollers</h3>
+                    <p>ESP32, Arduino, LoRa</p>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>🎮 Game Development and Simulation Tools</h3>
+                    <p>Bevy, PyGame, Webots (Robotics Simulations), SUMO</p>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>📱 Mobile App Development</h3>
+                    <p>Android (Kotlin, Java), Cross-Platform (Flutter), iOS (Swift)</p>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>🌐 WebApp and API Development</h3>
+                    <p>HTML, CSS, JavaScript, Flet, Streamlit, Django, FastAPI, Flask</p>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>🗺️ GIS</h3>
+                    <p>QGIS, PostGIS, GeoPandas, Shapely</p>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>☁️ Google Cloud Products</h3>
+                    <p>Google Analytics, Dialogflow ES</p>
+                </div>
+                
+            </div>
+        </section>
+        <section id="skills" class="section">
+            <h2>Other Skills</h2>
+            <div class="skills-grid">
+                
+                <div class="skill-category">
+                    <h3>🎨 Graphics Design and Animation</h3>
+                    <p>Photoshop, Illustrator, Inkscape, After Effects, Synfig Studio</p>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>💻 Other Technical Skills</h3>
+                    <p>Computer Architecture, Linux, GitLab CI/CD, Keycloak, PostgreSQL, MySQL</p>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>🔬 Research and Development</h3>
+                    <p>Project End to End Development and Deployment</p>
+                </div>
+                
+            </div>
+        </section>
+        <section id="education" class="section">
+            <h2>Education</h2>
+            <div class="experience-item">
+                <h3>Master of Science: Artificial Intelligence and Machine Learning</h3>
+                <p>Ganpat University, Ahmedabad | 2020 - 2022</p>
+            </div>
+        </section>
+
+        <section id="blog" class="section">
+            <h2>Latest Blog Posts</h2>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <h3>Quantum Computing in ML</h3>
+                    <p>Exploring the intersection of quantum computing and machine learning...</p>
+                </div>
+                <div class="blog-card">
+                    <h3>Advanced Computer Vision Techniques</h3>
+                    <p>Deep dive into modern computer vision algorithms...</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <h2>Get in Touch</h2>
+            <div class="social-links">
+                <a href="mailto:harshit.makwana@outlook.com">📧 harshit.makwana@outlook.com</a>
+                <a href="https://github.com/HarshitMakwana">🐙 GitHub</a>
+                <a href="https://linkedin.com/in/harshit-ai/">💼 LinkedIn</a>
+            </div>
+        </section>
+    </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+<script>
+
+     // Previous scripts remain the same, add this new navigation script
+     const navToggle = document.querySelector('.nav-toggle');
+     const nav = document.querySelector('nav');
+     const body = document.body;
+
+     navToggle.addEventListener('click', () => {
+         nav.classList.toggle('active');
+         navToggle.classList.toggle('active');
+         body.classList.toggle('menu-open');
+     });
+
+     // Close menu when clicking a link
+     document.querySelectorAll('nav a').forEach(link => {
+         link.addEventListener('click', () => {
+             nav.classList.remove('active');
+             navToggle.classList.remove('active');
+             body.classList.remove('menu-open');
+         });
+     });
+
+     // Close menu when clicking outside
+     document.addEventListener('click', (e) => {
+         if (!nav.contains(e.target) && !navToggle.contains(e.target) && nav.classList.contains('active')) {
+             nav.classList.remove('active');
+             navToggle.classList.remove('active');
+             body.classList.remove('menu-open');
+         }
+     });
+    particlesJS("particles-js", {
+        particles: {
+            number: {
+                value: 100,
+                density: { enable: true, value_area: 800 }
+            },
+            color: { value: "#00f7ff" },
+            shape: {
+                type: "circle",
+                stroke: { width: 0, color: "#000000" },
+            },
+            opacity: {
+                value: 0.5,
+                random: true,
+                animation: {
+                    enable: true,
+                    speed: 1,
+                    opacity_min: 0.1,
+                    sync: false
+                }
+            },
+            size: {
+                value: 3,
+                random: true,
+                animation: {
+                    enable: true,
+                    speed: 4,
+                    size_min: 0.3,
+                    sync: false
+                }
+            },
+            line_linked: {
+                enable: true,
+                distance: 150,
+                color: "#00f7ff",
+                opacity: 0.4,
+                width: 1
+            },
+            move: {
+                enable: true,
+                speed: 2,
+                direction: "none",
+                random: true,
+                straight: false,
+                out_mode: "out",
+                bounce: false,
+                attract: { enable: false, rotateX: 600, rotateY: 1200 }
+            }
+        },
+        interactivity: {
+            detect_on: "canvas",
+            events: {
+                onhover: { enable: true, mode: "repulse" },
+                onclick: { enable: true, mode: "push" },
+                resize: true
+            },
+            modes: {
+                repulse: { distance: 100, duration: 0.4 },
+                push: { particles_nb: 4 }
+            }
+        },
+        retina_detect: true
+    });
+
+    // Smooth scrolling
+    document.querySelectorAll('nav a').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
+</html>
